@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf入门</title>
+
+</head>
+
+    <table border="1" align="center" width="40%">
+        <tr>
+            <th>Key</th>
+            <th>Value.id</th>
+            <th>Value.name</th>
+            <th>Value.age</th>
+        </tr>
+        <tr th:each="maps : ${map}">
+            <td th:each="entry : ${maps}" th:text="${entry.key}" ></td>
+            <td th:each="entry : ${maps}" th:text="${entry.value.userid}" ></td>
+            <td th:each="entry : ${maps}" th:text="${entry.value.username}"></td>
+            <td th:each="entry : ${maps}" th:text="${entry.value.userage}"></td>
+        </tr>
+    </table>
+
+
+
+
+</body>
+</html>

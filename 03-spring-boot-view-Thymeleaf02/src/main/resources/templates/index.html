@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf入门</title>
+
+</head>
+
+    <a href="http://www.baidu.com">原始href</a>
+    <br/><hr/>
+    <a th:href="@{http://www.baidu.com}">绝对路径</a>
+
+    <br/><hr/>
+    <!--相对于项目根路径-->
+    <a th:href="@{/show}">相对路径</a>
+
+    <br/><hr/>
+    <!--相对于服务器的根路径，跳转项目-->
+    <a th:href="@{~/03-spring-boot-view-Thymeleaf01/show5}">跳转03-spring-boot-view-Thymeleaf01的/show5</a>
+<form>
+    <br/><hr/>
+    <!--Thymleaf传参-->
+    <a th:href="@{/show(id=1,name=liu)}">相对路径-传参</a>
+</form>
+    <br/><hr/>
+    <span th:text="${msr}">22222</span>
+    <br/><hr/>
+    <span th:text="${msg}">22222</span>
+    <br/><hr/>
+    [[${msg}]]
+
+<br/><hr/>
+<!--Thymleaf传参,http://localhost:8080/index/show?name=liu-->
+<a th:href="@{/{path}/show(path=index,name=liu)}">restful-传参</a>
+
+</body>
+</html>

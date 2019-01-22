@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+</head>
+<body>
+    <form th:action="@{/users/addUser}" method="post">
+        <div align="center">
+            用户姓名:&nbsp;<input type="text" name="name"><br>
+            用户年龄:&nbsp;<input type="text" name="age"><br>
+            <input type="submit" value="确定">
+        </div>
+    </form>
+
+    <br><hr>
+
+    <a th:href="@{/users/findAllUser}">查询所有用户信息</a>
+</body>
+</html>
