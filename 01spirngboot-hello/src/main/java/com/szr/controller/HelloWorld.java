@@ -14,6 +14,7 @@ public class HelloWorld {
     public Map<String, Object> showHelloWorld(){
         Map<String,Object> map = new HashMap<>();
         map.put("msg", "HelloWorld!！！！！！！！！！！！！");
+        map.put("branchtest01","011111111111");
         return map;
     }
 }
