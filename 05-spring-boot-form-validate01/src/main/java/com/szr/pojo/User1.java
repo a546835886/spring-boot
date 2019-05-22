@@ -8,6 +8,8 @@ import sun.awt.SunHints;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 public class User1 {
     @NotBlank(message = "姓名不能为空")

@@ -12,7 +12,7 @@ import javax.validation.Valid;
 public class UserController {
 
     @RequestMapping("/addUser")
-    public String showPage(@ModelAttribute("aa") User1 user1){
+    public String showPage(@ModelAttribute("user1") User1 user1){
         return "add";
     }
 
@@ -22,7 +22,7 @@ public class UserController {
      * BindingResult：封装了数据校验的结果 key名称和@Valid中一致
      */
     @RequestMapping("/save")
-    public String saveUser(@ModelAttribute("aa") @Valid User1 user1, BindingResult result){
+    public String saveUser(@ModelAttribute("user1") @Valid User1 user1, BindingResult result){
         if (result.hasErrors()){
             return "add";
         }
