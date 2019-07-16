@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/freemarker")
@@ -20,12 +17,13 @@ public class FreemarkerConroller {
 
     @RequestMapping("/index")
     public String web(Map<String, Object> model) {
-        model.put("message","freemar测试");
-        model.put("content","测试freemar创建及如何取值");
+        model.put("message","message=======");
+        model.put("content","");
+        model.put("date",new Date());
         // 返回的内容就是templetes下面文件的名称
         resource.setName("liuy");
         model.put("resource",resource);
-        return "index";
+        return "freemarker/test-one";
     }
 
     @RequestMapping(value ="center")
