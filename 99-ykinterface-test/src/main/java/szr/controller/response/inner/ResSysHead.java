@@ -1,6 +1,5 @@
-package com.szr.controller.response.inner;
+package szr.controller.response.inner;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -72,7 +71,6 @@ public class ResSysHead {
     @Length(max = 1024, message = "系统保留字符串最大长度不能超过1024！")
     private String SYSTEM_KEEP_ST;      //系统保留字符串
 
-    @JSONField(name = "SERVICE_ID")
     public String getSERVICE_ID() {
         return SERVICE_ID;
     }
@@ -81,7 +79,6 @@ public class ResSysHead {
         this.SERVICE_ID = SERVICE_ID;
     }
 
-    @JSONField(name = "SCENE_ID")
     public String getSCENE_ID() {
         return SCENE_ID;
     }
@@ -170,7 +167,6 @@ public class ResSysHead {
         this.RET_STATUS = RET_STATUS;
     }
 
-    @JSONField(name = "RET_ARRAY")
     public List<Ret> getRET_ARRAY() {
         return RET_ARRAY;
     }
@@ -229,7 +225,6 @@ public class ResSysHead {
         @Length(max = 512, message = "返回信息最大长度不能超过512！")
         private String RET_MSG;     //返回信息
 
-        @JSONField(name="RET_CODE")
         public String getRET_CODE() {
             return RET_CODE;
         }
@@ -237,7 +232,7 @@ public class ResSysHead {
         public void setRET_CODE(String RET_CODE) {
             this.RET_CODE = RET_CODE;
         }
-        @JSONField(name="RET_MSG")
+
         public String getRET_MSG() {
             return RET_MSG;
         }

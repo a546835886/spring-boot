@@ -3,25 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
-    </parent>
 
     <groupId>com.szr</groupId>
-    <artifactId>01-spring-boot-hello</artifactId>
+    <artifactId>99-ykinterface-test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <!-- springBoot启动器 -->
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -31,10 +19,17 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.szr.uam</groupId>
+            <artifactId>uam-api-manager</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
     <!-- 修改jdk版本 -->
     <properties>
         <java.version>1.7</java.version>
     </properties>
+
 
 </project>

@@ -1,7 +1,6 @@
-package com.szr.controller.response;
+package szr.controller.response;
 
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.szr.controller.response.inner.ResAppHead;
 import com.szr.controller.response.inner.ResLocalHead;
 import com.szr.controller.response.inner.ResSysHead;
@@ -18,17 +17,14 @@ public class ESBResponse<B> {
         this.BODY = BODY;
     }
 
-    private ResSysHead SYS_HEAD;
-    //存放各系统通用的关键字段
+    private ResSysHead SYS_HEAD;        //存放各系统通用的关键字段
 
-    private ResAppHead APP_HEAD;
-    //存储报文的交易查询信息
+    private ResAppHead APP_HEAD;        //存储报文的交易查询信息
 
     private ResLocalHead LOCAL_HEAD;    //除全行标准报文头外的特殊字段
 
     private B BODY;                     //存放响应报文
 
-    @JSONField(name = "SYS_HEAD")
     public ResSysHead getSYS_HEAD() {
         return SYS_HEAD;
     }
@@ -37,7 +33,6 @@ public class ESBResponse<B> {
         this.SYS_HEAD = SYS_HEAD;
     }
 
-    @JSONField(name = "APP_HEAD")
     public ResAppHead getAPP_HEAD() {
         return APP_HEAD;
     }
@@ -46,7 +41,6 @@ public class ESBResponse<B> {
         this.APP_HEAD = APP_HEAD;
     }
 
-    @JSONField(name = "LOCAL_HEAD")
     public ResLocalHead getLOCAL_HEAD() {
         return LOCAL_HEAD;
     }
@@ -55,7 +49,6 @@ public class ESBResponse<B> {
         this.LOCAL_HEAD = LOCAL_HEAD;
     }
 
-    @JSONField(name = "BODY")
     public B getBODY() {
         return BODY;
     }
