@@ -6,6 +6,7 @@ import java.util.*;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.PascalNameFilter;
+import com.szr.controller.request.ImageFileTransmitRequestDTO;
 import com.szr.controller.response.ESBResponse;
 import com.szr.controller.response.inner.ResAppHead;
 import com.szr.controller.response.inner.ResSysHead;
@@ -46,20 +47,31 @@ public class HttpPostArgumentTest2 {
         //构建HttpClient对象
         CloseableHttpClient client = HttpClients.createDefault();
 
-        String imageFileName = "E:\\test\\YGCA201901220000000001282_0001.jpg";
+        String imageFileName = "E:\\test\\YGCA201901220000000001147_0001.jpg";
+        String imageFileName1 = "E:\\test\\YGCA201901220000000001147_0002.jpg";
+        String imageFileName2 = "E:\\test\\YGCA201901220000000001147_0003.jpg";
+        String imageFileName3 = "E:\\test\\YGCA201901220000000001147_0004.pdf";
+        String imageFileName4 = "E:\\test\\YGLA201901220000000001147_0005.pdf";
         String zipFileName = "E:\\test\\test01.zip";
 
         //构建POST请求
-        HttpPost post = new HttpPost("http://localhost:8080/file/receive1");
+        HttpPost post = new HttpPost("http://localhost:8081/leex-api/szrService/upload1");
         InputStream inputStream1 = null;
         try {
             InputStream inputStream = new FileInputStream(zipFileName);
             File file = new File(imageFileName);
+            File file1 = new File(imageFileName1);
+            File file2 = new File(imageFileName2);
+            File file3 = new File(imageFileName3);
+            File file4 = new File(imageFileName4);
             String message = getjson();
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-            builder.addBinaryBody
-                        ("upfile", file, ContentType.DEFAULT_BINARY, imageFileName);
+            builder.addBinaryBody("upfile", file, ContentType.DEFAULT_BINARY, imageFileName);
+            builder.addBinaryBody("upfile1", file1, ContentType.DEFAULT_BINARY, imageFileName1);
+            builder.addBinaryBody("upfile2", file2, ContentType.DEFAULT_BINARY, imageFileName2);
+            builder.addBinaryBody("upfile3", file3, ContentType.DEFAULT_BINARY, imageFileName3);
+            builder.addBinaryBody("upfile4", file4, ContentType.DEFAULT_BINARY, imageFileName4);
             builder.addBinaryBody
                     ("upstream", inputStream, ContentType.create("application/zip"), zipFileName);
             builder.addTextBody("szrData", message, ContentType.TEXT_PLAIN);
@@ -117,28 +129,12 @@ public class HttpPostArgumentTest2 {
         }
     }
 
-    public String getjson(){
-        ESBResponse esbResponse = new ESBResponse();
-        ResSysHead head = new ResSysHead();
-        head.setSERVICE_ID("1");
-        head.setSCENE_ID("11111");
-        List<ResSysHead.Ret> ret = new ArrayList<>();
-        ResSysHead.Ret ret1 = head.new Ret();
-        ret1.setRET_CODE("0000");
-//        ret1.setRET_MSG("123123123");
-        ret.add(ret1);
-        head.setRET_ARRAY(ret);
-        esbResponse.setSYS_HEAD(head);
+   public String getjson(){
+        ImageFileTransmitRequestDTO  request = new ImageFileTransmitRequestDTO();
+       request.setApp_serial_no("YGCA201901220000000001147");
+       request.setFile_list("YGCA201901220000000001147_0001.jpg|YGCA201901220000000001147_0002.jpg|YGCA201901220000000001147_0003.jpg|YGCA201901220000000001147_0004.pdf|YGLA201901220000000001147_0005.pdf");
 
-        ResAppHead body = new ResAppHead();
-        body.setCURRENT_NUM("1");
-        body.setCURRENT_PG_TOTAL_NUM("1");
-        body.setPGUP_OR_PGDN("1");
-        body.setTOTAL_FLAG(null);
-        esbResponse.setBODY(body);
-
-
-        return JSONObject.toJSONString(esbResponse,new PascalNameFilter());
+        return JSONObject.toJSONString(request);
     }
 
 

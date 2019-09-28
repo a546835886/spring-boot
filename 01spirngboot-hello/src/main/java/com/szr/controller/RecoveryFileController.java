@@ -1,15 +1,10 @@
 package com.szr.controller;
 
-import com.alibaba.fastjson.JSONObject;
-
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -18,23 +13,24 @@ import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.*;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-@RequestMapping("/file")
+@RequestMapping("/leex-api")
 public class RecoveryFileController {
 
-    @RequestMapping(value = "/receive1")
+    @RequestMapping(value = "/szrService/upload")
     @ResponseBody
-    public String file (HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String file (HttpServletRequest request, HttpServletResponse response
+            ,@RequestParam(value = "szrData") String data) throws IOException {
         try {
             String szrData1 = request.getParameter("szrData");
             System.out.println(szrData1);
-            Part szrData = request.getPart("szrData");
-            System.out.println(szrData);
+            System.out.println("szrService controller data 请求报文："+ URLDecoder.decode(data, "utf-8"));
+
             StandardMultipartHttpServletRequest req = (StandardMultipartHttpServletRequest) request;
             Iterator<String> iterator = req.getFileNames();
             while (iterator.hasNext()) {
@@ -42,6 +38,7 @@ public class RecoveryFileController {
                 String absolutelyName = file.getOriginalFilename();
                 String fileName = absolutelyName.substring(absolutelyName.lastIndexOf(File.separator) + 1);
                 InputStream is = file.getInputStream();
+                //TODO 本机目录格式String localDir = localPath /debtorCode /Upload_date()/App_serial_no();
                 FileOutputStream fos = new FileOutputStream("E:/YG" + File.separator + fileName);
                 byte[] buffer = new byte[1024];
                 while (is.read(buffer) > 0) {
@@ -49,9 +46,8 @@ public class RecoveryFileController {
                 }
                 fos.flush();
                 fos.close();
-
             }
-
+            response.setContentType("text/html;charset=UTF-8");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -136,8 +132,6 @@ public class RecoveryFileController {
 
         // 数据处理
         System.out.println("处理数据11111111111111111111");
-
-
 
         try {
             out = response.getWriter();
